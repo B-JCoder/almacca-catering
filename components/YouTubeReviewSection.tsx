@@ -119,7 +119,7 @@ export default function YouTubeReviewSection() {
                 size="lg"
               >
                 <a
-                  href="https://youtu.be/4G5S9sCVPqw?si=-hJddmd7hyxVWRHm"
+                  href="https://www.youtube.com/@umaramirr/videos"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2"
