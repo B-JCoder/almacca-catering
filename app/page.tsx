@@ -1,3 +1,4 @@
+"use client";
 import dynamic from "next/dynamic"
 import HeroSlider from "@/components/HeroSlider"
 import AboutSection from "@/components/AboutSection"
@@ -7,6 +8,7 @@ import FAQSection from "@/components/FAQSection"
 import NewsletterSection from "@/components/NewsletterSection"
 import FeaturedMenu from "@/components/FeaturedMenu"
 import CallToAction from "@/components/CallToAction"
+import HomePage from "@/components/HomePage";
 
 // Lazy load the YouTube section for better performance
 const YouTubeReviewSection = dynamic(() => import("@/components/YouTubeReviewSection"), {
@@ -52,6 +54,8 @@ export default function Home() {
 
       {/* Newsletter */}
       <NewsletterSection />
+
+     <HomePage />
     </div>
   )
 }
