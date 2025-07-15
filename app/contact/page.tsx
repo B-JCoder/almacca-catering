@@ -11,6 +11,7 @@
 import type { Metadata } from "next"
 import ContactForm from "@/components/ContactForm"
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
+import UnifiedHero from "@/components/UnifiedHero"
 
 export const metadata: Metadata = {
   title: "Contact Us - Al-Macca Caterers & Event Planner",
@@ -19,9 +20,19 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
+    
+    <div className="min-h-screen bg-white">
+          {/* Unified Hero Section */}
+               <UnifiedHero
+                 title="Contact"
+                 subtitle="Crafting memorable experiences through exceptional cuisine and professional service since 2010"
+                 highlightWord=" Us"
+                 
+               /> 
+
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-black text-white py-20">
+      {/* <section className="bg-black text-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -30,7 +41,7 @@ export default function ContactPage() {
             <p className="text-xl text-gray-300">Get in touch with us for your catering and event planning needs</p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Contact Section */}
       <section className="py-20">
@@ -113,5 +124,7 @@ export default function ContactPage() {
         </div>
       </section>
     </div>
+    </div>
+    
   )
 }

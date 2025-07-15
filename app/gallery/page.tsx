@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import ImageGallery from "@/components/ImageGallery"
+import UnifiedHero from "@/components/UnifiedHero"
 
 export const metadata: Metadata = {
   title: "Events Gallery - Al-Macca Caterers & Event Planner",
@@ -21,8 +22,16 @@ const galleryImages = [
 export default function GalleryPage() {
   return (
     <div className="min-h-screen bg-white">
+          <div className="min-h-screen bg-white">
+                {/* Unified Hero Section */}
+                     <UnifiedHero
+                       title="Gallery"
+                       subtitle="Crafting memorable experiences through exceptional cuisine and professional service since 2010"
+                      //  highlightWord=" Us"
+                       
+                     /> 
       {/* Hero Section */}
-      <section className="bg-black text-white py-20">
+      {/* <section className="bg-black text-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -31,7 +40,7 @@ export default function GalleryPage() {
             <p className="text-xl text-gray-300">Explore our portfolio of successful events and celebrations</p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Gallery */}
       <section className="py-20">
@@ -39,6 +48,7 @@ export default function GalleryPage() {
           <ImageGallery images={galleryImages} />
         </div>
       </section>
+    </div>
     </div>
   )
 }

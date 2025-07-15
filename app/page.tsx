@@ -33,7 +33,7 @@ const YouTubeReviewSection = dynamic(
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-[100svh] relative">
       {/* Hero Slider */}
       <HeroSlider />
 
