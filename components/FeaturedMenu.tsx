@@ -82,7 +82,7 @@ export default function FeaturedMenu() {
           className="text-center mb-12 lg:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
-            Our <span className="text-yellow-600">Featured Menu</span>
+            Our <span className="text-yellow-400">Featured Menu</span>
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Discover our most popular dishes, crafted with authentic flavors and premium ingredients
@@ -146,7 +146,7 @@ export default function FeaturedMenu() {
                     <div className="text-xl sm:text-2xl font-bold text-yellow-600">{item.price}</div>
                     <Button
                       size="sm"
-                      className="bg-gray-900 text-white hover:bg-yellow-600 hover:text-black transition-all duration-300"
+                      className="bg-gray-900 text-white hover:bg-yellow-400 hover:text-black transition-all duration-300"
                       onClick={() => handleAddToCart(item)} // Add to cart on click
                     >
                       <ShoppingCart className="w-4 h-4 mr-1 sm:mr-2" />
@@ -163,7 +163,7 @@ export default function FeaturedMenu() {
         <div className="text-center mt-12 lg:mt-16">
           <Button
             size="lg"
-            className="bg-yellow-400 text-black hover:bg-yellow-500 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold w-full sm:w-auto"
+            className="bg-yellow-400 text-black hover:bg-yellow-700 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold w-full sm:w-auto"
             onClick={() => (window.location.href = "/menu")}
           >
             View Complete Menu

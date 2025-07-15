@@ -11,7 +11,7 @@ import FAQSection from "@/components/FAQSection";
 import NewsletterSection from "@/components/NewsletterSection";
 import FeaturedMenu from "@/components/FeaturedMenu";
 import CallToAction from "@/components/CallToAction";
-import HomePage from "@/components/HomePage";
+// import HomePage from "@/components/HomePage";
 
 // ✅ Dynamically import YouTubeReviewSection with SSR disabled
 const YouTubeReviewSection = dynamic(
@@ -62,7 +62,7 @@ export default function Home() {
       <NewsletterSection />
 
       {/* Final Home Page Section */}
-      <HomePage />
+      {/* <HomePage /> */}
     </div>
   );
 }
