@@ -54,7 +54,7 @@ export default function YouTubeReviewSection() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            What Our <span className="text-yellow-600">Customers Say</span>
+            What Our <span className="text-yellow-400">Customers Say</span>
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
             Don't just take our word for it - hear from our satisfied customers who have experienced our exceptional
@@ -115,7 +115,7 @@ export default function YouTubeReviewSection() {
               </p>
               <Button
                 asChild
-                className="bg-yellow-600 text-white hover:bg-yellow-700 w-full sm:w-auto"
+                className="bg-yellow-500 text-white hover:bg-yellow-600 w-full sm:w-auto"
                 size="lg"
               >
                 <a

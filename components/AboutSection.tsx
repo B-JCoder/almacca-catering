@@ -54,7 +54,7 @@ export default function AboutSection() {
           <div className="order-2 lg:order-1">
             <div className="mb-6 sm:mb-8">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
-                About <span className="text-yellow-600">Al-Macca Caterers</span>
+                About <span className="text-yellow-400">Al-Macca Caterers</span>
               </h2>
               <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-4 sm:mb-6">
                 Since 2010, Al-Macca Caterers has been the premier choice for authentic Pakistani cuisine in Karachi. We
@@ -73,7 +73,7 @@ export default function AboutSection() {
               {features.map((feature, index) => (
                 <div key={feature.title} className="flex items-start gap-3 sm:gap-4">
                   <div className="flex-shrink-0 w-10 sm:w-12 h-10 sm:h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                    <feature.icon className="w-5 sm:w-6 h-5 sm:h-6 text-yellow-600" />
+                    <feature.icon className="w-5 sm:w-6 h-5 sm:h-6 text-yellow-500" />
                   </div>
                   <div>
                     <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-1 sm:mb-2">
@@ -89,7 +89,7 @@ export default function AboutSection() {
             <div className="grid grid-cols-2 gap-3 sm:gap-6 mb-6 sm:mb-8">
               {achievements.map((achievement, index) => (
                 <div key={achievement.title} className="bg-white rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow">
-                  <achievement.icon className="w-6 sm:w-8 h-6 sm:h-8 text-yellow-600 mb-2 sm:mb-3" />
+                  <achievement.icon className="w-6 sm:w-8 h-6 sm:h-8 text-yellow-500 mb-2 sm:mb-3" />
                   <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">{achievement.title}</h3>
                   <p className="text-xs sm:text-sm text-gray-600">{achievement.description}</p>
                 </div>
@@ -98,7 +98,7 @@ export default function AboutSection() {
 
             <Button
               size="lg"
-              className="bg-yellow-400 text-black hover:bg-yellow-500 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold w-full sm:w-auto"
+              className="bg-yellow-400 text-black hover:bg-yellow-400 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold w-full sm:w-auto"
               onClick={() => (window.location.href = "/about")}
             >
               Learn More About Us

@@ -91,7 +91,7 @@ export default function CallToAction() {
               onClick={handlePhoneCall}
               size="lg"
               variant="outline"
-              className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3"
+              className="border-2 border-white text-black hover:bg-black hover:text-gray-100 px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3"
             >
               <Phone className="w-6 h-6" />
               Call Now

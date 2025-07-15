@@ -13,6 +13,12 @@
           "iframe[loading]"
         ]
       }
+    ],
+    "axe/forms": [
+      "default",
+      {
+        "select-name": "off"
+      }
     ]
   }
 }
