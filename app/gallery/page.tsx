@@ -28,6 +28,7 @@ export default function GalleryPage() {
                        title="Gallery"
                        subtitle="Crafting memorable experiences through exceptional cuisine and professional service since 2010"
                       //  highlightWord=" Us"
+                      
                        
                      /> 
       {/* Hero Section */}
