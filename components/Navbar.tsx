@@ -43,35 +43,40 @@ export default function Navbar() {
         isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg" : "bg-transparent"
       }`}
     >
-      {/* Top Bar */}
-      <div className="bg-black text-white py-2 px-4">
-        <div className="max-w-7xl mx-auto flex justify-between items-center text-sm">
-          <div className="flex items-center space-x-4">
+      {/* Top Bar - Enhanced Mobile Responsiveness */}
+      <div className="bg-black text-white py-1 sm:py-2 px-2 sm:px-4">
+        <div className="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+          <div className="flex items-center space-x-2 sm:space-x-4">
             <div className="flex items-center space-x-1">
-              <Phone className="w-4 h-4" />
+              <Phone className="w-3 h-3 sm:w-4 sm:h-4" />
               <a href="tel:+923333227339" className="hover:text-yellow-400 transition-colors">
-                0333-3227339
+                <span className="hidden xs:inline">0333-3227339</span>
+                <span className="xs:hidden">Call Us</span>
               </a>
             </div>
             <div className="flex items-center space-x-1">
-              <Mail className="w-4 h-4" />
+              <Mail className="w-3 h-3 sm:w-4 sm:h-4" />
               <a href="mailto:info@almaccacaterers.com" className="hover:text-yellow-400 transition-colors">
-                info@almaccacaterers.com
+                <span className="hidden sm:inline">info@almaccacaterers.com</span>
+                <span className="sm:hidden">Email</span>
               </a>
             </div>
           </div>
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <span>Premium Catering Services | Serving Since 2010</span>
+          </div>
+          <div className="lg:hidden text-xs">
+            <span>Since 2010</span>
           </div>
         </div>
       </div>
 
-      {/* Main Navigation */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
-            <div className="relative w-12 h-12">
+      {/* Main Navigation - Enhanced Mobile Layout */}
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+        <div className="flex justify-between items-center py-2 sm:py-4">
+          {/* Logo - Improved Mobile Sizing */}
+          <Link href="/" className="flex items-center space-x-2 sm:space-x-3">
+            <div className="relative w-8 h-8 sm:w-12 sm:h-12">
               <Image
                 src="/images/logo.jpeg"
                 alt="Al-Macca Caterers Logo"
@@ -81,15 +86,15 @@ export default function Navbar() {
               />
             </div>
             <div className="flex flex-col">
-              <span className={`text-xl font-bold ${isScrolled ? "text-gray-900" : "text-white"}`}>
+              <span className={`text-sm sm:text-xl font-bold ${isScrolled ? "text-gray-900" : "text-white"}`}>
                 Al-Macca Caterers
               </span>
-              <span className={`text-sm ${isScrolled ? "text-gray-600" : "text-gray-300"}`}>& Event Planner</span>
+              <span className={`text-xs sm:text-sm ${isScrolled ? "text-gray-600" : "text-gray-300"}`}>& Event Planner</span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => (
               <div
                 key={item.name}
@@ -113,7 +118,7 @@ export default function Navbar() {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border py-2"
+                    className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border py-2 z-50"
                   >
                     {item.dropdown.map((dropdownItem) => (
                       <Link
@@ -136,37 +141,45 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className={`md:hidden p-2 rounded-md ${isScrolled ? "text-gray-900" : "text-white"}`}
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {/* Mobile Order Button & Menu Button */}
+          <div className="flex items-center space-x-2 lg:hidden">
+            <Link
+              href="/order"
+              className="bg-yellow-400 text-black px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold hover:bg-yellow-500 transition-colors"
+            >
+              Order
+            </Link>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className={`p-2 rounded-md ${isScrolled ? "text-gray-900" : "text-white"}`}
+            >
+              {isOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - Enhanced Layout */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t"
+            className="lg:hidden bg-white border-t shadow-lg"
           >
-            <div className="px-4 py-2 space-y-1">
+            <div className="px-2 sm:px-4 py-2 space-y-1 max-h-96 overflow-y-auto">
               {navigation.map((item) => (
                 <div key={item.name}>
                   <Link
                     href={item.href}
-                    className="block px-3 py-2 text-gray-900 hover:bg-gray-100 rounded-md"
+                    className="block px-3 py-3 text-gray-900 hover:bg-gray-100 rounded-md font-medium"
                     onClick={() => setIsOpen(false)}
                   >
                     {item.name}
                   </Link>
                   {item.dropdown && (
-                    <div className="ml-4 space-y-1">
+                    <div className="ml-4 space-y-1 border-l-2 border-yellow-400 pl-4">
                       {item.dropdown.map((dropdownItem) => (
                         <Link
                           key={dropdownItem.name}
@@ -181,13 +194,6 @@ export default function Navbar() {
                   )}
                 </div>
               ))}
-              <Link
-                href="/order"
-                className="block px-3 py-2 bg-yellow-400 text-black rounded-md font-semibold text-center mt-4"
-                onClick={() => setIsOpen(false)}
-              >
-                Order Now
-              </Link>
             </div>
           </motion.div>
         )}
