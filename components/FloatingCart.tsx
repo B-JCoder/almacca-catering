@@ -58,42 +58,30 @@ export default function FloatingCart() {
     let message = `🎉 *NEW ORDER from Al-Macca Caterers!* 🎉\n`
     message += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`
     message += `📝 *Order ID:* ${orderId}\n`
-    message += `🗓️ *Order Date:* ${new Date().toLocaleDateString("en-PK")}\n`
-    message += `🚚 *Preferred Delivery:* ${formattedDeliveryDate} at ${formattedDeliveryTime}\n`
-    message += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`
+    message += `📅 *Delivery Date:* ${formattedDeliveryDate}\n`
+    message += `⏰ *Delivery Time:* ${formattedDeliveryTime}\n\n`
+    message += `🍽️ *ORDER DETAILS:*\n`
+    message += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`
 
-    message += `📋 *ORDER DETAILS:*\n\n`
-
-    // Add each item in a clean format
     items.forEach((item, index) => {
       message += `${index + 1}. *${item.name}*\n`
-      message += `    • Quantity: ${item.quantity}\n`
-      message += `    • Unit Price: Rs. ${item.price.toLocaleString()}\n`
-      message += `    • Subtotal: Rs. ${(item.price * item.quantity).toLocaleString()}\n`
-      message += `    ─────────────────────────────────────\n`
+      message += `   • Quantity: ${item.quantity}\n`
+      message += `   • Price: ${formatPrice(item.price)} each\n`
+      message += `   • Subtotal: ${formatPrice(item.price * item.quantity)}\n\n`
     })
 
-    message += `\n💰 *TOTAL AMOUNT: Rs. ${totalPrice.toLocaleString()}*\n\n`
-
     message += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`
-    message += `📞 *NEXT STEPS:*\n`
-    message += `• Please confirm this order and provide your full name.\n`
-    message += `• Share your complete delivery address (including landmarks).\n`
-    message += `• Mention any special requests or notes for your order.\n\n`
+    message += `💰 *TOTAL AMOUNT: ${formatPrice(totalPrice)}*\n`
+    message += `📦 *Total Items: ${totalItems}*\n\n`
+    message += `📞 Please confirm this order and let me know the final details.\n\n`
+    message += `Thank you for choosing Al-Macca Caterers! 🙏`
 
-    message += `🙏 *Thank you for choosing Al-Macca Caterers!* 🙏\n`
-    message += `We look forward to serving you. Our team will contact you shortly to finalize the details.`
-
+    const whatsappNumber = "923333227339"
     const encodedMessage = encodeURIComponent(message)
-    window.open(`https://wa.me/923333227339?text=${encodedMessage}`, "_blank")
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`
 
-    clearCart()
-    setIsOpen(false)
-    setDeliveryDate("") // Clear date after order
-    setDeliveryTime("") // Clear time after order
+    window.open(whatsappUrl, "_blank")
   }
-
-  if (totalItems === 0) return null
 
   return (
     <>
@@ -103,172 +91,149 @@ export default function FloatingCart() {
         </div>
       )}
 
-      {/* Floating Cart Button */}
-      <div className="fixed bottom-6 right-6 z-50">
+      {/* Floating Cart Button - Enhanced Mobile Design */}
+      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40">
         <button
           onClick={() => setIsOpen(true)}
-          className="w-16 h-16 rounded-full bg-yellow-500 hover:bg-yellow-600 text-white shadow-lg flex flex-col items-center justify-center transition-all hover:scale-110 animate-pulse"
+          className="relative bg-yellow-400 hover:bg-yellow-500 text-black p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
         >
-          <ShoppingCart className="w-6 h-6" />
-          <span className="text-xs font-bold mt-1">{totalItems}</span>
+          <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6" />
+          {totalItems > 0 && (
+            <span className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center">
+              {totalItems > 99 ? "99+" : totalItems}
+            </span>
+          )}
         </button>
       </div>
 
-      {/* Cart Sidebar */}
+      {/* Cart Sidebar - Enhanced Mobile Layout */}
       {isOpen && (
-        <>
-          {/* Backdrop */}
-          <div className="fixed inset-0 bg-black/50 z-50" onClick={() => setIsOpen(false)} />
+        <div className="fixed inset-0 z-50 overflow-hidden">
+          <div className="absolute inset-0 bg-black bg-opacity-50" onClick={() => setIsOpen(false)} />
+          <div className="absolute right-0 top-0 h-full w-full sm:w-96 bg-white shadow-xl">
+            <div className="flex flex-col h-full">
+              {/* Header - Mobile Optimized */}
+              <div className="flex items-center justify-between p-4 sm:p-6 border-b">
+                <h2 className="text-lg sm:text-xl font-bold">Your Cart ({totalItems})</h2>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-1 sm:p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <X className="w-5 h-5 sm:w-6 sm:h-6" />
+                </button>
+              </div>
 
-          {/* Cart Panel */}
-          <div className="fixed top-0 right-0 h-full w-full sm:w-96 bg-white shadow-xl z-50 flex flex-col animate-slideInRight">
-            {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b bg-yellow-50">
-              <h2 className="text-xl font-bold flex items-center gap-2 text-gray-800">
-                <ShoppingCart className="w-5 h-5 text-yellow-600" />
-                Your Cart ({totalItems} items)
-              </h2>
-              <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
-                <X className="w-5 h-5" />
-              </Button>
-            </div>
-
-            {/* Cart Items */}
-            <div className="flex-1 overflow-y-auto p-4">
-              {items.length === 0 ? (
-                <div className="text-center py-8 text-gray-500">
-                  <ShoppingCart className="w-16 h-16 mx-auto mb-4 text-gray-300" />
-                  <p>Your cart is empty</p>
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  {items.map((item) => (
-                    <div key={item.id} className="flex gap-3 border-b pb-4 last:border-b-0">
-                      {/* Item Image */}
-                      <div className="w-20 h-20 relative rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
+              {/* Cart Items - Enhanced Mobile Scrolling */}
+              <div className="flex-1 overflow-y-auto p-4 sm:p-6">
+                {items.length === 0 ? (
+                  <div className="text-center py-8 sm:py-12">
+                    <ShoppingCart className="w-12 h-12 sm:w-16 sm:h-16 mx-auto text-gray-300 mb-4" />
+                    <p className="text-gray-500 text-sm sm:text-base">Your cart is empty</p>
+                  </div>
+                ) : (
+                  <div className="space-y-3 sm:space-y-4">
+                    {items.map((item) => (
+                      <div key={item.id} className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-gray-50 rounded-lg">
                         <Image
-                          src={item.image || "/placeholder.svg?height=80&width=80"}
+                          src={item.image || "/placeholder.svg"}
                           alt={item.name}
-                          fill
-                          className="object-cover"
-                          sizes="80px"
+                          width={60}
+                          height={60}
+                          className="w-12 h-12 sm:w-16 sm:h-16 object-cover rounded-lg"
                         />
-                      </div>
-
-                      {/* Item Details */}
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-gray-900 text-sm leading-tight">{item.name}</h3>
-                        <p className="text-yellow-600 font-bold text-lg">{formatPrice(item.price)}</p>
-                        <p className="text-xs text-gray-500">Subtotal: {formatPrice(item.price * item.quantity)}</p>
-
-                        {/* Quantity Controls */}
-                        <div className="flex items-center gap-2 mt-3">
-                          <button
-                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                            className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors"
-                            disabled={item.quantity <= 1}
-                          >
-                            <Minus className="w-3 h-3" />
-                          </button>
-                          <span className="w-8 text-center font-semibold">{item.quantity}</span>
-                          <button
-                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                            className="w-8 h-8 bg-yellow-500 text-white rounded-full flex items-center justify-center hover:bg-yellow-600 transition-colors"
-                          >
-                            <Plus className="w-3 h-3" />
-                          </button>
-                          <button
-                            onClick={() => removeFromCart(item.id)}
-                            className="ml-auto text-red-500 hover:text-red-700 text-xs font-medium"
-                          >
-                            Remove
-                          </button>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-medium text-sm sm:text-base line-clamp-2">{item.name}</h3>
+                          <p className="text-yellow-600 font-bold text-sm sm:text-base">{formatPrice(item.price)}</p>
+                          <div className="flex items-center gap-2 sm:gap-3 mt-2">
+                            <button
+                              onClick={() => updateQuantity(item.id, Math.max(0, item.quantity - 1))}
+                              className="p-1 hover:bg-gray-200 rounded-full transition-colors"
+                            >
+                              <Minus className="w-3 h-3 sm:w-4 sm:h-4" />
+                            </button>
+                            <span className="font-medium text-sm sm:text-base min-w-[2rem] text-center">{item.quantity}</span>
+                            <button
+                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                              className="p-1 hover:bg-gray-200 rounded-full transition-colors"
+                            >
+                              <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
+                            </button>
+                            <button
+                              onClick={() => removeFromCart(item.id)}
+                              className="ml-auto text-red-500 hover:text-red-700 text-xs sm:text-sm font-medium"
+                            >
+                              Remove
+                            </button>
+                          </div>
                         </div>
                       </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Order Form & Checkout - Enhanced Mobile Layout */}
+              {items.length > 0 && (
+                <div className="border-t p-4 sm:p-6 space-y-4">
+                  {/* Delivery Details - Mobile Optimized */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                    <div>
+                      <Label htmlFor="delivery-date" className="text-xs sm:text-sm font-medium">
+                        Delivery Date
+                      </Label>
+                      <Input
+                        id="delivery-date"
+                        type="date"
+                        value={deliveryDate}
+                        onChange={(e) => setDeliveryDate(e.target.value)}
+                        className="mt-1 text-xs sm:text-sm"
+                        min={new Date().toISOString().split("T")[0]}
+                      />
                     </div>
-                  ))}
+                    <div>
+                      <Label htmlFor="delivery-time" className="text-xs sm:text-sm font-medium">
+                        Delivery Time
+                      </Label>
+                      <Input
+                        id="delivery-time"
+                        type="time"
+                        value={deliveryTime}
+                        onChange={(e) => setDeliveryTime(e.target.value)}
+                        className="mt-1 text-xs sm:text-sm"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Total - Enhanced Mobile Display */}
+                  <div className="border-t pt-4">
+                    <div className="flex justify-between items-center mb-4">
+                      <span className="text-base sm:text-lg font-medium">Total ({totalItems} items)</span>
+                      <span className="text-lg sm:text-xl font-bold text-yellow-600">{formatPrice(totalPrice)}</span>
+                    </div>
+
+                    {/* Action Buttons - Mobile Optimized */}
+                    <div className="space-y-2 sm:space-y-3">
+                      <Button
+                        onClick={handleWhatsAppOrder}
+                        className="w-full bg-green-600 hover:bg-green-700 text-white py-2 sm:py-3 text-sm sm:text-base font-semibold"
+                      >
+                        <Send className="w-4 h-4 mr-2" />
+                        Order via WhatsApp
+                      </Button>
+                      <Button
+                        onClick={clearCart}
+                        variant="outline"
+                        className="w-full py-2 sm:py-3 text-sm sm:text-base"
+                      >
+                        Clear Cart
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               )}
-
-              {/* Delivery Date and Time Pickers */}
-              <div className="mt-6 p-4 border rounded-lg bg-gray-50 space-y-4">
-                <h3 className="font-semibold text-gray-800">Preferred Delivery Time</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="delivery-date" className="text-xs text-gray-600 mb-1 block">
-                      Date
-                    </Label>
-                    <Input
-                      id="delivery-date"
-                      type="date"
-                      value={deliveryDate}
-                      onChange={(e) => setDeliveryDate(e.target.value)}
-                      className="w-full"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="delivery-time" className="text-xs text-gray-600 mb-1 block">
-                      Time
-                    </Label>
-                    <Input
-                      id="delivery-time"
-                      type="time"
-                      value={deliveryTime}
-                      onChange={(e) => setDeliveryTime(e.target.value)}
-                      className="w-full"
-                    />
-                  </div>
-                </div>
-              </div>
             </div>
-
-            {/* Footer */}
-            {items.length > 0 && (
-              <div className="border-t bg-gray-50 p-4 space-y-4">
-                {/* Total */}
-                <div className="flex justify-between items-center">
-                  <span className="text-lg font-semibold text-gray-700">Total Amount:</span>
-                  <span className="text-2xl font-bold text-yellow-600">{formatPrice(totalPrice)}</span>
-                </div>
-
-                {/* Order Summary */}
-                <div className="text-xs text-gray-600 bg-white p-3 rounded-lg">
-                  <p className="font-medium mb-1">Order Summary:</p>
-                  <p>
-                    {totalItems} item{totalItems > 1 ? "s" : ""} • Total: {formatPrice(totalPrice)}
-                  </p>
-                  <p>
-                    Delivery: {formattedDeliveryDate} at {formattedDeliveryTime}
-                  </p>
-                </div>
-
-                {/* Actions */}
-                <div className="space-y-2">
-                  <Button
-                    onClick={handleWhatsAppOrder}
-                    className="w-full bg-green-600 hover:bg-green-700 text-white gap-2 h-12 text-base font-semibold"
-                  >
-                    <Send className="w-5 h-5" />
-                    Send Order via WhatsApp
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="w-full border-gray-300 text-gray-700 hover:bg-gray-50 bg-transparent"
-                    onClick={clearCart}
-                  >
-                    Clear Cart
-                  </Button>
-                </div>
-
-                {/* Contact Info */}
-                <div className="text-center text-xs text-gray-500 pt-2 border-t">
-                  <p>📞 +92 333 322 7339</p>
-                  <p>Al-Macca Caterers - Premium Catering Services</p>
-                </div>
-              </div>
-            )}
           </div>
-        </>
+        </div>
       )}
     </>
   )

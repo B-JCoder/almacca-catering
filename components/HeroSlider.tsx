@@ -113,17 +113,17 @@ export default function HeroSlider() {
         </div>
       ))}
 
-      {/* Floating Elements */}
+      {/* Floating Elements - Enhanced Mobile Responsiveness */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-3 sm:w-4 h-3 sm:h-4 bg-yellow-400 rounded-full animate-pulse opacity-60" />
-        <div className="absolute top-20 sm:top-40 right-10 sm:right-20 w-4 sm:w-6 h-4 sm:h-6 bg-yellow-400 rounded-full animate-bounce opacity-40" />
+        <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-2 sm:w-4 h-2 sm:h-4 bg-yellow-400 rounded-full animate-pulse opacity-60" />
+        <div className="absolute top-20 sm:top-40 right-10 sm:right-20 w-3 sm:w-6 h-3 sm:h-6 bg-yellow-400 rounded-full animate-bounce opacity-40" />
         <div className="absolute bottom-20 sm:bottom-40 left-10 sm:left-20 w-2 sm:w-3 h-2 sm:h-3 bg-yellow-400 rounded-full animate-ping opacity-50" />
-        <div className="absolute bottom-30 sm:bottom-60 right-5 sm:right-10 w-3 sm:w-5 h-3 sm:h-5 bg-yellow-400 rounded-full animate-pulse opacity-30" />
+        <div className="absolute bottom-30 sm:bottom-60 right-5 sm:right-10 w-2 sm:w-5 h-2 sm:h-5 bg-yellow-400 rounded-full animate-pulse opacity-30" />
       </div>
 
-      {/* Content */}
+      {/* Content - Enhanced Mobile Layout */}
       <div className="relative z-10 h-full flex items-center">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl">
             {slides.map((slide, index) => (
               <div
@@ -136,21 +136,21 @@ export default function HeroSlider() {
               >
                 {index === currentSlide && (
                   <>
-                    {/* Stats Bar */}
-                    <div className="flex flex-wrap items-center gap-3 sm:gap-6 mb-4 sm:mb-6">
-                      <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-3 sm:px-4 py-1 sm:py-2">
+                    {/* Stats Bar - Enhanced Mobile Layout */}
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4 sm:mb-6">
+                      <div className="flex items-center space-x-1 sm:space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-2 sm:px-4 py-1 sm:py-2">
                         <Calendar className="w-3 sm:w-4 h-3 sm:h-4 text-yellow-400" />
                         <span className="text-white text-xs sm:text-sm font-medium">
                           {slide.stats.events} Events
                         </span>
                       </div>
-                      <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-3 sm:px-4 py-1 sm:py-2">
+                      <div className="flex items-center space-x-1 sm:space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-2 sm:px-4 py-1 sm:py-2">
                         <Star className="w-3 sm:w-4 h-3 sm:h-4 text-yellow-400 fill-current" />
                         <span className="text-white text-xs sm:text-sm font-medium">
                           {slide.stats.rating} Rating
                         </span>
                       </div>
-                      <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-3 sm:px-4 py-1 sm:py-2">
+                      <div className="flex items-center space-x-1 sm:space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-2 sm:px-4 py-1 sm:py-2">
                         <Users className="w-3 sm:w-4 h-3 sm:h-4 text-yellow-400" />
                         <span className="text-white text-xs sm:text-sm font-medium">
                           {slide.stats.guests} Served
@@ -158,31 +158,32 @@ export default function HeroSlider() {
                       </div>
                     </div>
 
-                    {/* Main Content */}
-                    <div className="space-y-4 sm:space-y-6">
+                    {/* Main Content - Improved Mobile Typography */}
+                    <div className="space-y-3 sm:space-y-6">
                       <div className="inline-block">
-                        <span className="bg-yellow-400 text-black px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-semibold">
+                        <span className="bg-yellow-400 text-black px-2 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-semibold">
                           Serving Since 2010
                         </span>
                       </div>
 
-                      <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white leading-tight">
+                      <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight">
                         {slide.title}
                       </h1>
 
-                      <h2 className="text-lg sm:text-2xl md:text-3xl text-yellow-400 font-semibold">
+                      <h2 className="text-base sm:text-xl md:text-2xl lg:text-3xl text-yellow-400 font-semibold">
                         {slide.subtitle}
                       </h2>
 
-                      <p className="text-base sm:text-xl text-gray-200 max-w-2xl leading-relaxed">
+                      <p className="text-sm sm:text-lg md:text-xl text-gray-200 max-w-2xl leading-relaxed">
                         {slide.description}
                       </p>
 
+                      {/* Buttons - Enhanced Mobile Layout */}
                       <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4">
                         <Button
                           asChild
                           size="lg"
-                          className="bg-yellow-400 text-black hover:bg-yellow-500 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold w-full sm:w-auto"
+                          className="bg-yellow-400 text-black hover:bg-yellow-500 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-lg font-semibold w-full sm:w-auto order-1"
                         >
                           <Link href={slide.link}>{slide.cta}</Link>
                         </Button>
@@ -190,7 +191,7 @@ export default function HeroSlider() {
                           asChild
                           variant="outline"
                           size="lg"
-                          className="border-white text-white hover:bg-white hover:text-black px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg bg-transparent w-full sm:w-auto"
+                          className="border-white text-white hover:bg-white hover:text-black px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-lg bg-transparent w-full sm:w-auto order-2"
                         >
                           <Link href="/contact">Contact Us</Link>
                         </Button>
@@ -204,74 +205,73 @@ export default function HeroSlider() {
         </div>
       </div>
 
-      {/* Navigation Controls */}
-   {/* Navigation Controls */}
-<div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-  <div className="flex items-center space-x-2 sm:space-x-4 bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3">
+      {/* Navigation Controls - Enhanced Mobile Responsiveness */}
+      <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+        <div className="flex items-center space-x-2 sm:space-x-4 bg-white/10 backdrop-blur-sm rounded-full px-3 sm:px-6 py-2 sm:py-3">
 
-    {/* Play/Pause Button */}
-    <button
-      onClick={togglePlayPause}
-      className="text-white hover:text-yellow-400 transition-colors"
-      aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
-      title={isPlaying ? "Pause slideshow" : "Play slideshow"}
-    >
-      {isPlaying ? (
-        <Pause className="w-4 sm:w-5 h-4 sm:h-5" />
-      ) : (
-        <Play className="w-4 sm:w-5 h-4 sm:h-5" />
-      )}
-    </button>
+          {/* Play/Pause Button */}
+          <button
+            onClick={togglePlayPause}
+            className="text-white hover:text-yellow-400 transition-colors"
+            aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
+            title={isPlaying ? "Pause slideshow" : "Play slideshow"}
+          >
+            {isPlaying ? (
+              <Pause className="w-3 sm:w-5 h-3 sm:h-5" />
+            ) : (
+              <Play className="w-3 sm:w-5 h-3 sm:h-5" />
+            )}
+          </button>
 
-    {/* Slide Indicators */}
-    <div className="flex space-x-1 sm:space-x-2">
-      {slides.map((_, index) => (
-        <button
-          key={index}
-          onClick={() => goToSlide(index)}
-          className="relative w-8 sm:w-12 h-1 sm:h-2 bg-white/30 rounded-full overflow-hidden"
-          aria-label={`Go to slide ${index + 1}`}
-          title={`Slide ${index + 1}`}
-        >
-          <div
-            className={`absolute left-0 top-0 h-full bg-yellow-400 transition-all duration-100 ${
-              index === currentSlide ? "opacity-100" : "opacity-0"
-            }`}
-            style={{
-              width: index === currentSlide ? `${progress}%` : "0%",
-            }}
-          />
-          <div
-            className={`absolute left-0 top-0 h-full transition-all duration-300 ${
-              index === currentSlide ? "bg-yellow-400" : "bg-white/50"
-            }`}
-            style={{ width: index < currentSlide ? "100%" : "0%" }}
-          />
-        </button>
-      ))}
-    </div>
+          {/* Slide Indicators - Mobile Optimized */}
+          <div className="flex space-x-1 sm:space-x-2">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className="relative w-6 sm:w-12 h-1 sm:h-2 bg-white/30 rounded-full overflow-hidden"
+                aria-label={`Go to slide ${index + 1}`}
+                title={`Slide ${index + 1}`}
+              >
+                <div
+                  className={`absolute left-0 top-0 h-full bg-yellow-400 transition-all duration-100 ${
+                    index === currentSlide ? "opacity-100" : "opacity-0"
+                  }`}
+                  style={{
+                    width: index === currentSlide ? `${progress}%` : "0%",
+                  }}
+                />
+                <div
+                  className={`absolute left-0 top-0 h-full transition-all duration-300 ${
+                    index === currentSlide ? "bg-yellow-400" : "bg-white/50"
+                  }`}
+                  style={{ width: index < currentSlide ? "100%" : "0%" }}
+                />
+              </button>
+            ))}
+          </div>
 
-  </div>
-</div>
+        </div>
+      </div>
 
-{/* Arrow Navigation */}
-<button
-  onClick={prevSlide}
-  className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/10 backdrop-blur-sm text-white p-2 sm:p-3 rounded-full hover:bg-white/20 transition-all"
-  aria-label="Previous slide"
-  title="Previous slide"
->
-  <ChevronLeft className="w-4 sm:w-6 h-4 sm:h-6" />
-</button>
+      {/* Arrow Navigation - Mobile Optimized */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/10 backdrop-blur-sm text-white p-1.5 sm:p-3 rounded-full hover:bg-white/20 transition-all"
+        aria-label="Previous slide"
+        title="Previous slide"
+      >
+        <ChevronLeft className="w-4 sm:w-6 h-4 sm:h-6" />
+      </button>
 
-<button
-  onClick={nextSlide}
-  className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/10 backdrop-blur-sm text-white p-2 sm:p-3 rounded-full hover:bg-white/20 transition-all"
-  aria-label="Next slide"
-  title="Next slide"
->
-  <ChevronRight className="w-4 sm:w-6 h-4 sm:h-6" />
-</button>
+      <button
+        onClick={nextSlide}
+        className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/10 backdrop-blur-sm text-white p-1.5 sm:p-3 rounded-full hover:bg-white/20 transition-all"
+        aria-label="Next slide"
+        title="Next slide"
+      >
+        <ChevronRight className="w-4 sm:w-6 h-4 sm:h-6" />
+      </button>
     </div>
   );
 }

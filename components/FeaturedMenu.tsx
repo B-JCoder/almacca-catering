@@ -74,23 +74,23 @@ export default function FeaturedMenu() {
   return (
     <section className="py-12 sm:py-16 lg:py-20 bg-white">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
+        {/* Section Header - Enhanced Mobile Typography */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12 lg:mb-16"
+          className="text-center mb-8 sm:mb-12 lg:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-3 sm:mb-6 leading-tight">
             Our <span className="text-yellow-400">Featured Menu</span>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
             Discover our most popular dishes, crafted with authentic flavors and premium ingredients
           </p>
         </motion.div>
 
-        {/* Menu Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        {/* Menu Grid - Enhanced Mobile Layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {featuredItems.map((item, index) => (
             <motion.div
               key={item.id}
@@ -100,57 +100,60 @@ export default function FeaturedMenu() {
               whileHover={{ y: -10 }}
               className="group"
             >
-              <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300">
+              <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
                 <div className="relative overflow-hidden">
                   <Image
                     src={item.image || "/placeholder.svg"}
                     alt={item.name}
                     width={400}
                     height={300}
-                    className="w-full h-48 sm:h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-40 sm:h-48 lg:h-56 xl:h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
-                  <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
-                    <span className="bg-yellow-400 text-black px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">
+                  <div className="absolute top-2 sm:top-4 left-2 sm:left-4">
+                    <span className="bg-yellow-400 text-black px-2 sm:px-3 py-1 rounded-full text-xs font-semibold">
                       {item.category}
                     </span>
                   </div>
-                  <div className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-white/90 backdrop-blur-sm rounded-full px-2 sm:px-3 py-1">
+                  <div className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-white/90 backdrop-blur-sm rounded-full px-2 sm:px-3 py-1">
                     <div className="flex items-center gap-1">
-                      <Star className="w-3 sm:w-4 h-3 sm:h-4 text-yellow-400 fill-current" />
-                      <span className="text-xs sm:text-sm font-semibold">{item.rating}</span>
+                      <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current" />
+                      <span className="text-xs font-semibold">{item.rating}</span>
                     </div>
                   </div>
                 </div>
 
-                <CardContent className="p-4 sm:p-6">
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 group-hover:text-yellow-600 transition-colors line-clamp-2">
-                    {item.name}
-                  </h3>
-                  <p className="text-gray-600 mb-4 text-sm leading-relaxed line-clamp-3">{item.description}</p>
+                <CardContent className="p-3 sm:p-4 lg:p-6 flex flex-col h-full">
+                  <div className="flex-1">
+                    <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-2 group-hover:text-yellow-600 transition-colors line-clamp-2 leading-tight">
+                      {item.name}
+                    </h3>
+                    <p className="text-gray-600 mb-3 sm:mb-4 text-xs sm:text-sm leading-relaxed line-clamp-3">{item.description}</p>
 
-                  {/* Item Details */}
-                  <div className="flex items-center gap-3 sm:gap-4 mb-4 text-xs sm:text-sm text-gray-500">
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-3 sm:w-4 h-3 sm:h-4" />
-                      <span>{item.prepTime}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Users className="w-3 sm:w-4 h-3 sm:h-4" />
-                      <span>{item.serves}</span>
+                    {/* Item Details - Mobile Optimized */}
+                    <div className="flex items-center gap-2 sm:gap-4 mb-3 sm:mb-4 text-xs text-gray-500">
+                      <div className="flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        <span>{item.prepTime}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Users className="w-3 h-3" />
+                        <span className="hidden sm:inline">{item.serves}</span>
+                        <span className="sm:hidden">{item.serves.split(' ')[0]}</span>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Price and Action */}
-                  <div className="flex items-center justify-between">
-                    <div className="text-xl sm:text-2xl font-bold text-yellow-600">{item.price}</div>
+                  {/* Price and Action - Enhanced Mobile Layout */}
+                  <div className="flex items-center justify-between mt-auto">
+                    <div className="text-lg sm:text-xl lg:text-2xl font-bold text-yellow-600">{item.price}</div>
                     <Button
                       size="sm"
-                      className="bg-gray-900 text-white hover:bg-yellow-400 hover:text-black transition-all duration-300"
-                      onClick={() => handleAddToCart(item)} // Add to cart on click
+                      className="bg-gray-900 text-white hover:bg-yellow-400 hover:text-black transition-all duration-300 px-2 sm:px-4 py-1 sm:py-2"
+                      onClick={() => handleAddToCart(item)}
                     >
-                      <ShoppingCart className="w-4 h-4 mr-1 sm:mr-2" />
-                      <span className="hidden sm:inline">Add to Cart</span>
+                      <ShoppingCart className="w-3 h-3 sm:w-4 sm:h-4 sm:mr-2" />
+                      <span className="hidden sm:inline text-xs sm:text-sm">Add to Cart</span>
                     </Button>
                   </div>
                 </CardContent>
@@ -159,11 +162,11 @@ export default function FeaturedMenu() {
           ))}
         </div>
 
-        {/* View Full Menu CTA */}
-        <div className="text-center mt-12 lg:mt-16">
+        {/* View Full Menu CTA - Enhanced Mobile Button */}
+        <div className="text-center mt-8 sm:mt-12 lg:mt-16">
           <Button
             size="lg"
-            className="bg-yellow-400 text-black hover:bg-yellow-700 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold w-full sm:w-auto"
+            className="bg-yellow-400 text-black hover:bg-yellow-500 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-lg font-semibold w-full sm:w-auto transition-colors"
             onClick={() => (window.location.href = "/menu")}
           >
             View Complete Menu
